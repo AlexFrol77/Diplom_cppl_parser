@@ -19,11 +19,11 @@ int main(int argc, char** argv) {
 				out_skb = "]";
 	int action = 1;
 
-	std::cout << "Введите путь и имя файла: ";
-	std::cin >> path;
-	Parser parser(path);
+	/*td::cout << "Введите путь и имя файла: ";
+	std::cin >> path;*/
+	Parser parser("Test.ini");
 
-	do {
+	/*do {
 		system("cls");
 
 		do {
@@ -65,7 +65,16 @@ int main(int argc, char** argv) {
 		catch (std::exception& ex) {
 			std::cout << ex.what() << "\n";
 		}
-	} while (action);
+	} while (action);*/
+
+	try {
+		std::cout << parser.getValue<std::string>("Section2", "var2") << std::endl;
+		std::cout << parser.getValue<double>("Section2", "var2") << std::endl;
+		std::cout << parser.getValue<int>("Section2", "var2") << std::endl;
+	}
+	catch (const std::exception& ex) {
+		std::cout << ex.what() << "\n";
+	}
 
 	return 0;
 }

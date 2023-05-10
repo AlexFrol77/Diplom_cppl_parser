@@ -63,6 +63,7 @@ public:
 		
 		return result_;
 	}
+
 	template <>
 	std::string getValue(std::string section, std::string variable) {
 		fin.seekg(0, std::ios::beg);
@@ -102,6 +103,12 @@ public:
 
 		return result_;
 	}
+
+	template <>
+	char getValue(std::string section, std::string variable) {
+		throw std::runtime_error("impossible!(Char not work!!!)");
+	}
+
 	std::vector<std::string> getVarName();
 	std::vector<std::string> getSecName();
 	void printIni();
