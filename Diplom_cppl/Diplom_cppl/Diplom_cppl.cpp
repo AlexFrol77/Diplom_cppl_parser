@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 				section = in_skb + user_section + out_skb;
 				std::cout << "Введите имя переменной: ";
 				std::cin >> variable;
-				auto result = parser.getValue<double>(section, variable);
+				auto result = parser.getValue<std::string>(section, variable);
 				std::cout << "Значение " << section << " в переменной " <<
 					variable << ": = " << result << "\n";
 			}
