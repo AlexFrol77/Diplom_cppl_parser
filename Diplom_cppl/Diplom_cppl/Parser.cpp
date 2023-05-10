@@ -17,12 +17,12 @@ Parser::Parser(std::string titlePath) : titlePath_(titlePath) {
 Parser::~Parser() { }
 
 std::vector<std::string> Parser::getVarName() {
-	fin.seekg(0, std::ios::beg);
+	std::string temp = "";
 	if (countVarName == 0) {
-		while (!fin.eof()) {
-			getline(fin, name_var_);
-			if (name_var_.find("[") == std::string::npos) {
+		for (int i = 0; i < source_ini_.size(); i++) {
+			if (source_ini_[i].find("[") == std::string::npos) {
 				temp_name_ = "";
+				name_var_ = source_ini_[i];
 				for (int i = 0; i < name_var_.size(); i++) {
 					if (name_var_[i] == '=' || name_var_[i] == ';') {
 						break;
@@ -45,19 +45,17 @@ std::vector<std::string> Parser::getVarName() {
 					vec_var_name_.push_back(temp_name_);
 				}
 			}
-			countVarName++;
 		}
 	}
 	return vec_var_name_;
 }
 
 std::vector<std::string> Parser::getSecName() {
-	fin.seekg(0, std::ios::beg);
 	if (countSecName == 0) {
-		while (!fin.eof()) {
-			getline(fin, name_sec_);
-			if (name_sec_.find("[") != std::string::npos) {
+		for (int i = 0; i < source_ini_.size(); i++) {
+			if (source_ini_[i].find("[") != std::string::npos) {
 				temp_name_ = "";
+				name_sec_ = source_ini_[i];
 				for (int i = name_sec_.find('['); i < name_sec_.size(); i++) {
 					if (name_sec_[i] == '=' || name_sec_[i] == ';' || name_sec_[i] == ']') {
 						break;
@@ -87,9 +85,7 @@ std::vector<std::string> Parser::getSecName() {
 }
 
 void Parser::printIni() {
-	fin.seekg(0, std::ios::beg);
-	while (!fin.eof()) {
-		getline(fin, temp_name_);
-		std::cout << temp_name_ << "\n";
+	for (const auto& st : source_ini_) {
+		std::cout << st << "\n";
 	}
 }

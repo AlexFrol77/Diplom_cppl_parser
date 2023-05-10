@@ -19,11 +19,11 @@ int main(int argc, char** argv) {
 				out_skb = "]";
 	int action = 1;
 
-	/*td::cout << "Введите путь и имя файла: ";
-	std::cin >> path;*/
-	Parser parser("Test.ini");
+	std::cout << "Введите путь и имя файла: ";
+	std::cin >> path;
+	Parser parser(path);
 
-	/*do {
+	do {
 		system("cls");
 
 		do {
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 				section = in_skb + user_section + out_skb;
 				std::cout << "Введите имя переменной: ";
 				std::cin >> variable;
-				auto result = parser.getValue<std::string>(section, variable);
+				auto result = parser.getValue<double>(section, variable);
 				std::cout << "Значение " << section << " в переменной " <<
 					variable << ": = " << result << "\n";
 			}
@@ -65,16 +65,16 @@ int main(int argc, char** argv) {
 		catch (std::exception& ex) {
 			std::cout << ex.what() << "\n";
 		}
-	} while (action);*/
+	} while (action);
 
-	try {
+	/*try {
 		std::cout << parser.getValue<std::string>("Section1", "var1") << std::endl;
 		std::cout << parser.getValue<double>("Section1", "var1") << std::endl;
 		std::cout << parser.getValue<int>("Section1", "var1") << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << "\n";
-	}
+	}*/
 
 	return 0;
 }

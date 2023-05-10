@@ -11,7 +11,6 @@ public:
 	
 	template <class T>
 	T getValue(std::string section, std::string variable) {
-		fin.seekg(0, std::ios::beg);
 		T result_ = 0;
 		for (int i = 0; i < source_ini_.size(); i++) {
 			flag = true;
@@ -64,7 +63,6 @@ public:
 
 	template <>
 	std::string getValue(std::string section, std::string variable) {
-		fin.seekg(0, std::ios::beg);
 		std::string result_ = "";
 		for (int i = 0; i < source_ini_.size(); i++) {
 			flag = true;
