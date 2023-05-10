@@ -68,9 +68,9 @@ int main(int argc, char** argv) {
 	} while (action);*/
 
 	try {
-		std::cout << parser.getValue<std::string>("Section2", "var2") << std::endl;
-		std::cout << parser.getValue<double>("Section2", "var2") << std::endl;
-		std::cout << parser.getValue<int>("Section2", "var2") << std::endl;
+		std::cout << parser.getValue<std::string>("Section1", "var1") << std::endl;
+		std::cout << parser.getValue<double>("Section1", "var1") << std::endl;
+		std::cout << parser.getValue<int>("Section1", "var1") << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << "\n";

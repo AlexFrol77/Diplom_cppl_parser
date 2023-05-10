@@ -13,14 +13,12 @@ public:
 	T getValue(std::string section, std::string variable) {
 		fin.seekg(0, std::ios::beg);
 		T result_ = 0;
-		while (!(fin.eof())) {
-			if (flag) {
-				getline(fin, find_section_);
-			}
+		for (int i = 0; i < source_ini_.size(); i++) {
 			flag = true;
-			if (find_section_.find(section) != std::string::npos) {
+			if (source_ini_[i].find(section) != std::string::npos) {
 				do {
-					getline(fin, find_str_);
+					i++;
+					find_str_ = source_ini_[i];
 					if (find_str_.find(variable) != std::string::npos) {
 						bool check = true;
 						int check_count = 0;
@@ -54,7 +52,7 @@ public:
 						flag = false;
 						find_section_ = find_str_;
 					}
-				} while (!fin.eof() && flag);
+				} while ((i != (source_ini_.size() - 1)) && flag);
 			}
 		}
 		if (result_ == 0) {
@@ -68,14 +66,12 @@ public:
 	std::string getValue(std::string section, std::string variable) {
 		fin.seekg(0, std::ios::beg);
 		std::string result_ = "";
-		while (!(fin.eof())) {
-			if (flag) {
-				getline(fin, find_section_);
-			}
+		for (int i = 0; i < source_ini_.size(); i++) {
 			flag = true;
-			if (find_section_.find(section) != std::string::npos) {
+			if (source_ini_[i].find(section) != std::string::npos) {
 				do {
-					getline(fin, find_str_);
+					i++;
+					find_str_ = source_ini_[i];
 					if (find_str_.find(variable) != std::string::npos) {
 						bool check = true;
 						int check_count = 0;
@@ -94,7 +90,7 @@ public:
 						flag = false;
 						find_section_ = find_str_;
 					}
-				} while (!fin.eof() && flag);
+				} while ((i != (source_ini_.size() - 1)) && flag);
 			}
 		}
 		if (result_.empty()) {
@@ -125,7 +121,8 @@ private:
 	bool flag = true;
 
 	std::vector<std::string> vec_var_name_,
-							 vec_sec_name_;
+							 vec_sec_name_,
+							 source_ini_;
 	std::ifstream fin;
 	int countSecName = 0,
 		countVarName = 0;

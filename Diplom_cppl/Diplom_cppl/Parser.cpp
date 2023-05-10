@@ -6,11 +6,15 @@ Parser::Parser(std::string titlePath) : titlePath_(titlePath) {
 	if (!(this->fin.is_open())) {
 		throw std::runtime_error("The file did not open!");
 	}
-}
-
-Parser::~Parser() {
+	while (!fin.eof()) {
+		std::string temp = "";
+		getline(fin, temp);
+		this->source_ini_.push_back(temp);
+	}
 	fin.close();
 }
+
+Parser::~Parser() { }
 
 std::vector<std::string> Parser::getVarName() {
 	fin.seekg(0, std::ios::beg);
